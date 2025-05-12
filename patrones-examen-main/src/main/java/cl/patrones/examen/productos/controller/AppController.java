@@ -5,6 +5,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import cl.patrones.examen.productos.service.ProductoService;
 
+import cl.patrones.examen.productos.service.CalculadorDescuento;
+import cl.patrones.examen.productos.domain.Categoria;
+
+import org.springframework.web.bind.annotation.RestController;
+import java.time.LocalDate;
+
 @Controller
 public class AppController {
 	
@@ -22,4 +28,11 @@ public class AppController {
 		return "inicio";
 	}
 
+
+	@GetMapping("/productos/descuento")
+    public String obtenerDescuento() {
+        // Crear una categoría de ejemplo
+        return "Endpoint temporal deshabilitado";
+    }
+	
 }
