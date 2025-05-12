@@ -12,62 +12,62 @@ public class PatronesExamenApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PatronesExamenApplication.class, args);
 
-		probarDescuento();
+		// probarDescuento();
 	}
 
-	private static void probarDescuento() {
-        try {
-            // Crear un producto ficticio con valores aproximados
-            Producto producto = new Producto() {
-                @Override
-                public String getSku() {
-                    return "TP001";
-                }
+	// private static void probarDescuento() {
+    //     try {
+    //         // Crear un producto ficticio con valores aproximados
+    //         Producto producto = new Producto() {
+    //             @Override
+    //             public String getSku() {
+    //                 return "TP001";
+    //             }
 
-                @Override
-                public String getNombre() {
-                    return "Taladro Percutor";
-                }
+    //             @Override
+    //             public String getNombre() {
+    //                 return "Taladro Percutor";
+    //             }
 
-                @Override
-                public String getImagen() {
-                    return "imagen.jpg";
-                }
+    //             @Override
+    //             public String getImagen() {
+    //                 return "imagen.jpg";
+    //             }
 
-                @Override
-                public Long getCosto() {
-                    return 50000L;
-                }
+    //             @Override
+    //             public Long getCosto() {
+    //                 return 50000L;
+    //             }
 
-                @Override
-                public Long getPrecioLista() {
-                    return 100000L;
-                }
+    //             @Override
+    //             public Long getPrecioLista() {
+    //                 return 100000L;
+    //             }
 
-                @Override
-                public Long getDescuento() {
-                    return 10L;
-                }
+    //             @Override
+    //             public Long getDescuento() {
+    //                 return 10L;
+    //             }
 
-                @Override
-                public Long getPrecioFinal() {
-                    return getPrecioLista() - (getPrecioLista() * getDescuento() / 100);
-                }
+    //             @Override
+    //             public Long getPrecioFinal() {
+    //                 return getPrecioLista() - (getPrecioLista() * getDescuento() / 100);
+    //             }
 
-                @Override
-                public cl.patrones.examen.productos.domain.Categoria getCategoria() {
-                    return () -> "Taladros Percutores";
-                }
-            };
+    //             @Override
+    //             public cl.patrones.examen.productos.domain.Categoria getCategoria() {
+    //                 return () -> "Taladros Percutores";
+    //             }
+    //         };
 
-            LocalDate dia = LocalDate.now();
-            CalculadorDescuento calculador = new CalculadorDescuento();
-            double precioConDescuento = calculador.aplicarDescuento(producto, dia);
+    //         LocalDate dia = LocalDate.now();
+    //         CalculadorDescuento calculador = new CalculadorDescuento();
+    //         double precioConDescuento = calculador.aplicarDescuento(producto, dia);
 
-            // Imprimir el resultado
-            System.out.println("Precio con descuento calculado: $" + precioConDescuento);
-        } catch (Exception e) {
-            System.err.println("Error al calcular el descuento: " + e.getMessage());
-        }
-    }
+    //         // Imprimir el resultado
+    //         System.out.println("Precio con descuento calculado: $" + precioConDescuento);
+    //     } catch (Exception e) {
+    //         System.err.println("Error al calcular el descuento: " + e.getMessage());
+    //     }
+    // }
 }

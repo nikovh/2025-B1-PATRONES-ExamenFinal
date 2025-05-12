@@ -17,16 +17,13 @@
 		<div class="container px-4 px-lg-5 mt-5">
 			
 			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">				
-				<div class="col mb-5" data-th-each="a : ${productos}">
+				<!-- <div class="col mb-5" data-th-each="a : ${productos}">
 					<div class="card h-100">
-						<!-- Product image-->						
+											
 						<img class="card-img-top" data-th-src="@{/images/{imagen}(imagen=${a.imagen})}" data-th-alt="${a.nombre}" alt="Producto text alt" />
-						<!-- Product details-->
 						<div class="card-body p-4">
 							<div class="text-center">
-								<!-- Product name-->
 								<h5 class="fw-bolder" data-th-text="${a.nombre}">Fancy Product</h5>
-								<!-- Product price-->
 								<div data-th-if="${a.precioLista} == ${a.precioFinal}">																
 									<span data-th-text="${#numbers.formatCurrency(a.precioFinal)}">$40.00 - $80.00</span>
 								</div>
@@ -36,7 +33,6 @@
 								</div>
 							</div>
 						</div>
-						<!-- Product actions-->
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
 								<a class="btn btn-outline-dark mt-auto" data-th-href="@{/carrito/add(cant=1,sku=${a.sku})}" href="#">
@@ -45,7 +41,28 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
+				<div data-th-each="a : ${productos}">
+					<div class="card h-100">
+						<img class="card-img-top" data-th-src="@{/images/{imagen}(imagen=${a.imagen})}" alt="Producto" />
+						<div class="card-body p-4">
+							<div class="text-center">
+								<h5 class="fw-bolder" data-th-text="${a.nombre}">Producto</h5>
+								
+								<!-- Precio sin descuento -->
+								<div data-th-if="${a.precioLista == a.precioFinal}">
+									<span data-th-text="${#numbers.formatCurrency(a.precioFinal)}"></span>
+								</div>
+								
+								<!-- Precio con descuento -->
+								<div data-th-if="${a.precioLista != a.precioFinal}">
+									<span><s data-th-text="${#numbers.formatCurrency(a.precioLista)}"></s></span>
+									<span data-th-text="${#numbers.formatCurrency(a.precioFinal)}"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>				
 			</div>
 			
 			
