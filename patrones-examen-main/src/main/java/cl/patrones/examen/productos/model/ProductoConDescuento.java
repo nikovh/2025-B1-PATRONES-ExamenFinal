@@ -4,56 +4,64 @@ import cl.patrones.examen.productos.domain.Producto;
 import cl.patrones.examen.productos.domain.Categoria;
 import cl.patrones.examen.productos.service.CalculadorDescuento;
 
+import java.time.LocalDate;
+
 public class ProductoConDescuento implements Producto {
 
-    private final Producto producto;
+    // private final Producto producto;
+    private final Producto original;
     private final Long descuento;
     private final Long precioFinal;
 
-    public ProductoConDescuento(Producto producto) {
-        this.producto = producto;
+    public ProductoConDescuento(Producto original) {
+        this.original = original;
         CalculadorDescuento calculador = new CalculadorDescuento();
-        this.descuento = calculador.aplicarDescuento(producto);
-        this.precioFinal = producto.getPrecioLista() - descuento;
+        double porcentaje = calculador.obtenerMayorPorcentaje(original, LocalDate.now());
+
+        Long lista = original.getPrecioLista();
+        this.descuento = Math.round(lista * porcentaje);
+        this.precioFinal = lista - this.descuento;
     }
 
     @Override
     public String getSku() {
-        return producto.getSku();
+        return original.getSku();
     }
 
     @Override
     public String getNombre() {
-        return producto.getNombre();
+        return original.getNombre();
     }
 
     @Override
     public String getImagen() {
-        return producto.getImagen();
+        return original.getImagen();
     }
 
     @Override
     public Long getCosto() {
-        return producto.getCosto();
+        return original.getCosto();
     }
 
     @Override
     public Long getPrecioLista() {
-        return producto.getPrecioLista();
-    }
-
-    @Override
-    public Long getDescuento() {
-        return this.descuento;
-    }
-
-    @Override
-    public Long getPrecioFinal() {
-        return this.precioFinal;
+        return original.getPrecioLista();
     }
 
     @Override
     public Categoria getCategoria() {
-        return producto.getCategoria();
+        return original.getCategoria();
     }
+
+    @Override
+    public Long getDescuento() {
+        return descuento;
+    }
+
+    @Override
+    public Long getPrecioFinal() {
+        return precioFinal;
+    }
+
+
 }

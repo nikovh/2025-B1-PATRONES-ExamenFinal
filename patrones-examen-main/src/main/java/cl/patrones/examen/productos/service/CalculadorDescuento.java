@@ -3,33 +3,39 @@ package cl.patrones.examen.productos.service;
 import cl.patrones.examen.productos.domain.Producto;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Arrays;
 
 public class CalculadorDescuento {
 
-    // // Método para aplicar el descuento al producto
-    // public double aplicarDescuento(Producto producto, LocalDate dia) {
-    //     // Crear una lista de estrategias de descuento
-    //     List<DescuentoStrategy> estrategias = Arrays.asList(
-    //         new DescuentoLunes(),
-    //         new DescuentoMartes(),
-    //         new DescuentoMiercoles(),
-    //         new DescuentoEmpleado()
-    //     );
+    // Método para aplicar el descuento al producto
+    public Long aplicarDescuento(Producto producto, LocalDate dia) {
 
-    //     DescuentoDecorador decorador = new DescuentoDecorador(estrategias);
-    //     double descuento = decorador.calcularDescuento(producto, null, dia);
-    //     return producto.getPrecioLista() * (1 - descuento);
-    // }
-
-    public Long aplicarDescuento(Producto producto) {
-        double descuento = obtenerDescuento(producto);
+        double porcentaje = obtenerMayorPorcentaje(producto, dia);
         Long precioLista = producto.getPrecioLista();
-        return Math.round(precioLista - (precioLista * descuento));
+        
+        return Math.round(precioLista - (precioLista * porcentaje));
     }
 
-    private double obtenerDescuento(Producto producto) {
-        // Implementa aquí la lógica para obtener el descuento adecuado
-        return 0.1; // Ejemplo: 10% de descuento
+    // public Long aplicarDescuento(Producto producto) {
+    //     double descuento = obtenerDescuento(producto);
+    //     Long precioLista = producto.getPrecioLista();
+    //     return Math.round(precioLista - (precioLista * descuento));
+    // }
+
+    // private double obtenerDescuento(Producto producto) {
+    //     // Implementa aquí la lógica para obtener el descuento adecuado
+    //     return 0.5; // Ejemplo: 10% de descuento
+    // }
+
+    public double obtenerMayorPorcentaje(Producto p, LocalDate dia) {
+        List<DescuentoStrategy> estrategias = List.of(
+            new DescuentoLunes(),
+            new DescuentoMartes(),
+            new DescuentoMiercoles(),
+            new DescuentoEmpleado()
+        );
+        return estrategias.stream()
+            .mapToDouble(estrategia -> estrategia.calcularDescuento(p, dia))
+            .max()
+            .orElse(0.0);
     }
 }

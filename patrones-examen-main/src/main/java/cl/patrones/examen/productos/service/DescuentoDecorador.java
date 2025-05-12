@@ -6,16 +6,16 @@ import java.util.List;
 
 public class DescuentoDecorador implements DescuentoStrategy {
     
-    private List<DescuentoStrategy> descuentos;
+    private List<DescuentoStrategy> estrategias;
 
-    public DescuentoDecorador(List<DescuentoStrategy> descuentos) {
-        this.descuentos = descuentos;
+    public DescuentoDecorador(List<DescuentoStrategy> estrategias) {
+        this.estrategias = estrategias;
     }
 
     @Override
-    public double calcularDescuento(Producto producto, Object usuario, LocalDate dia) {
-        return descuentos.stream()
-                .mapToDouble(descuento -> descuento.calcularDescuento(producto, usuario, dia))
+    public double calcularDescuento(Producto producto, LocalDate dia) {
+        return estrategias.stream()
+                .mapToDouble(estrategia -> estrategia.calcularDescuento(producto, dia))
                 .max()
                 .orElse(0.0);
     }
