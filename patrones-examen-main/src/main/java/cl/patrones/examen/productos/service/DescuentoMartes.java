@@ -13,7 +13,6 @@ public class DescuentoMartes implements DescuentoStrategy {
         // Verifica si el día es martes y 
         if (dia.getDayOfWeek() == DayOfWeek.TUESDAY && producto.getCategoria().getNombre().equalsIgnoreCase("Esmeriles Angulares")) {
             // Aplica un descuento del 8% para los martes
-            //return producto.getPrecio() * 0.08;
             return DESCUENTO_MARTES;
         }
         // Si no es martes, no hay descuento

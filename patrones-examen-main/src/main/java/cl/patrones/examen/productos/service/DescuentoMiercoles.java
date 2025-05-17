@@ -13,7 +13,6 @@ public class DescuentoMiercoles implements DescuentoStrategy {
         // Verifica si el día es miercoles y 
         if (dia.getDayOfWeek() == DayOfWeek.WEDNESDAY && producto.getCategoria().getNombre().equalsIgnoreCase("Taladros Percutores")) {
             // Aplica un descuento del 10% para los miercoles
-            //return producto.getPrecio() * 0.10;
             return DESCUENTO_MIERCOLES;
         }
         // Si no es miercoles, no hay descuento

@@ -15,17 +15,6 @@ public class CalculadorDescuento {
         return Math.round(precioLista - (precioLista * porcentaje));
     }
 
-    // public Long aplicarDescuento(Producto producto) {
-    //     double descuento = obtenerDescuento(producto);
-    //     Long precioLista = producto.getPrecioLista();
-    //     return Math.round(precioLista - (precioLista * descuento));
-    // }
-
-    // private double obtenerDescuento(Producto producto) {
-    //     // Implementa aquí la lógica para obtener el descuento adecuado
-    //     return 0.5; // Ejemplo: 10% de descuento
-    // }
-
     public double obtenerMayorPorcentaje(Producto p, LocalDate dia) {
         List<DescuentoStrategy> estrategias = List.of(
             new DescuentoLunes(),

@@ -17,7 +17,6 @@ public class PatronesExamenApplication {
 
 	// private static void probarDescuento() {
     //     try {
-    //         // Crear un producto ficticio con valores aproximados
     //         Producto producto = new Producto() {
     //             @Override
     //             public String getSku() {

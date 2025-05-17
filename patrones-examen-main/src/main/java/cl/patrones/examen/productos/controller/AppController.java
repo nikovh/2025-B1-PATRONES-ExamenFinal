@@ -11,40 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-// @Controller
-// public class AppController {
-	
-// 	private final ProductoService productoService;
-	
-// 	// public AppController(ProductoService productoService) {
-// 	// 	super();
-// 	// 	this.productoService = productoService;
-// 	// }
-// 	public AppController() {
-// 		//usar el nuevo servicio decorador
-// 		this.productoService = new ProductoServiceConDescuento();
-// 	}
-
-// 	// @GetMapping("/")
-// 	// String inicio(Model model) {
-// 	// 	var productos = productoService.getProductos();
-// 	// 	model.addAttribute("productos", productos);
-// 	// 	return "inicio";
-// 	// }
-
-// 	@GetMapping("/")
-// 	public String inicio(Model model) {
-// 		// Obtener la lista de productos
-// 		List<? extends Producto> productos = productoService.getProductos();
-		
-// 		// Agregar la lista de productos al modelo
-// 		model.addAttribute("productos", productos);
-		
-// 		// Retornar el nombre de la vista
-// 		return "avisos";
-// 		// return "inicio";
-// 	}
-
 @Controller
 public class AppController {
 
@@ -54,8 +20,7 @@ public class AppController {
     @GetMapping("/")
     public String inicio(Model model) {
         List<? extends Producto> productos = productoService.getProductos();
-        model.addAttribute("productos", productos);
-        // return "includes/avisos"; 
+        model.addAttribute("productos", productos); 
 		return "inicio";
     }
 
